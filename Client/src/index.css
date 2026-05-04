@@ -3,8 +3,9 @@
 
 @import "tailwindcss";
 
-body {
-    font-family: "Schoolbell", cursive;
+
+.schoolbell {
+      font-family: "Schoolbell", cursive;
 }
 
 .roboto {

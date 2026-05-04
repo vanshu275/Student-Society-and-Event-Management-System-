@@ -20,7 +20,7 @@ const Home = () => {
       {/* Content */}
       <div className="relative z-10 flex flex-col justify-between h-full p-6">
         {/* Top */}
-        <h1 className="text-3xl md:text-5xl font-bold text-white flex items-center gap-2 ">
+        <h1 className="text-3xl md:text-5xl font-bold text-white flex items-center gap-2 schoolbell">
           CollegeConnect
         </h1>
 
