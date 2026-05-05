@@ -6,13 +6,16 @@ export const createEvent = async (req, res) => {
     try {
         const { title, description, date, venue, category, registrationFee, societyId } = req.body;
 
+        const society = await Society.findById(societyId);
+        if (!society) return res.status(404).json({ message: "Society not found" });
+
+        if (society.admin.toString() !== req.user.id && req.user.role !== 'admin') {
+            return res.status(403).json({ 
+                message: "Aap is society ke liye event nahi bana sakte, aap owner nahi ho!" 
+            });
+        }
         const newEvent = new Event({
-            title,
-            description,
-            date,
-            venue,
-            category,
-            registrationFee,
+            title, description, date, venue, category, registrationFee,
             organizingSociety: societyId,
         });
 
