@@ -15,9 +15,9 @@ app.use(express.urlencoded({ extended: true })); // Form data handle karne ke li
 
 // 2. Routes Mounting
 // Yahan humne versioning (v1) use ki hai jo professional standard hai
-app.use('/api/v1/auth', authRoutes);
-app.use('/api/v1/events', eventRoutes);
-app.use('/api/v1/societies', societyRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/events', eventRoutes);
+app.use('/api/societies', societyRoutes);
 
 // 3. Health Check Route
 app.get("/", (req, res) => {

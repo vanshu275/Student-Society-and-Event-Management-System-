@@ -14,7 +14,6 @@ export const createEvent = async (req, res) => {
             category,
             registrationFee,
             organizingSociety: societyId,
-            // QR logic removed from here
         });
 
         await newEvent.save();

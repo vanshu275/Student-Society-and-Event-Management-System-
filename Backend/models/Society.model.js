@@ -5,7 +5,7 @@ const societySchema = new mongoose.Schema({
     name: { type: String, required: true, unique: true },
     description: { type: String, required: true },
     logo: { type: String }, // Cloudinary URL storage ke liye
-    college: { 
+    level: { 
         type: String, 
         default: "University Wide" // Kuch societies sirf COT ki hoti hain, kuch pure GBPUAT ki
     },

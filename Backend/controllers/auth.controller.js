@@ -25,7 +25,7 @@ export const register = async (req, res) => {
 
         res.status(200).json({
             token,
-            user: { id: newUser._id, name: newUser.name, role: newUser.role, college: newUser.college }
+            user: { id: newUser._id, name: newUser.name, role: newUser.role, college: newUser.college , rollNumber : newUser.rollNumber , branch : newUser.branch }
         });
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -46,7 +46,7 @@ export const login = async (req, res) => {
 
         res.status(200).json({
             token,
-            user: { id: user._id, name: user.name, role: user.role, college: user.college }
+            user: { id: user._id, name: user.name, role: user.role, college: user.college , rollNumber : user.rollNumber , branch : user.branch }
         });
 
     } catch (error) {
