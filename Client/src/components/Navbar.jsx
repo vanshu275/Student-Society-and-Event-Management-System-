@@ -1,60 +1,81 @@
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+
 export const Navbar = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const avatar =
+    user?.gender === "Female"
+      ? "https://api.dicebear.com/7.x/avataaars/svg?seed=Jane"
+      : "https://api.dicebear.com/7.x/avataaars/svg?seed=John";
+
   return (
-    <nav className="flex items-center justify-between px-10 py-5 bg-white/90 backdrop-blur-xl border-b border-gray-100 sticky top-0 z-50">
-      {/* LOGO */}
-      <div className="flex items-center gap-3">
-        <span className="flex flex-col leading-4 schoolbell">
-          <span className=" font-extrabold  text-2xl ">College Connect</span>
-          <span className=" uppercase text-[20px] font-bold ">gbpuat</span>
+    <nav className="flex items-center justify-between px-10 py-5 bg-white/90 backdrop-blur-xl border-b border-gray-400 sticky top-0 z-50">
+
+      {/* Logo */}
+      <div
+        onClick={() => navigate("/explore")}
+        className="cursor-pointer flex flex-col leading-4"
+      >
+        <span className="font-extrabold text-2xl">College Connect</span>
+        <span className="uppercase text-sm font-bold text-gray-500">
+          GBPUAT
         </span>
       </div>
 
-      {/* Links */}
-
-      <div className="hidden md:flex gap-10 font-bold text-gray-500 text-[16px] roboto ">
-        <a href="#" className=" hover:text-blue-600 transition-all ">
+      {/* Center Links */}
+      <div className="hidden md:flex gap-10 font-semibold text-gray-600">
+        <Link to="/explore" className="hover:text-blue-600">
           Home
-        </a>
-        <a href="#" className="hover:text-blue-600 transition-all">
+        </Link>
+        <Link to="/explore/events" className="hover:text-blue-600">
           Events
-        </a>
-        <a href="#" className="hover:text-blue-600 transition-all">
+        </Link>
+        <Link to="/explore/societies" className="hover:text-blue-600">
           Societies
-        </a>
-        <a href="#" className="hover:text-blue-600 transition-all">
-          Clubs
-        </a>
-        <a href="#" className="hover:text-blue-600 transition-all">
+        </Link>
+        <Link to="/explore/about" className="hover:text-blue-600">
           About
-        </a>
+        </Link>
       </div>
 
-      {/* Profile */}
+      {/* Right Side */}
       <div className="flex items-center gap-4">
-        <div className="relative cursor-pointer hover:scale-110 transition-transform">
-          <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full border-2 border-white"></span>
-          <svg
-            className="w-7 h-7 text-gray-700"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+
+        {user ? (
+          // ✅ LOGGED IN → PROFILE
+          <div
+            onClick={() => navigate("/profile")}
+            className="flex items-center gap-3 bg-gray-50 px-3 py-1.5 rounded-full border hover:shadow-md cursor-pointer transition"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2.5"
-              d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-            ></path>
-          </svg>
-        </div>
-        <div className="flex items-center gap-3 bg-gray-50 p-1.5 pr-2 rounded-full border border-gray-100 hover:shadow-md transition-shadow cursor-pointer">
-          <img
-            src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix"
-            className="w-9 h-9 rounded-full border-2 border-white bg-blue-100 shadow-sm"
-            alt="User"
-          />
-          <span className="text-[16px] font-bold text-gray-700 ">Vansh</span>
-        </div>
+            <img
+              src={avatar}
+              alt="user"
+              className="w-9 h-9 rounded-full bg-blue-100"
+            />
+            <span className="font-semibold text-gray-700">
+              {user.name}
+            </span>
+          </div>
+        ) : (
+          // ❌ NOT LOGGED IN
+          <>
+            <Link
+              to="/login"
+              className="px-4 py-2 rounded-lg text-gray-600 hover:text-blue-600"
+            >
+              Login
+            </Link>
+
+            <Link
+              to="/register"
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700"
+            >
+              Register
+            </Link>
+          </>
+        )}
       </div>
     </nav>
   );

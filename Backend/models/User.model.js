@@ -5,6 +5,14 @@ const userSchema = new mongoose.Schema({
     name: { type: String, required: true, trim: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    gender : {
+        type : String ,
+        required : true ,
+        enum : [
+            'Male' ,
+            'Female'
+        ]
+    },
     college: {
         type: String,
         required: true,
@@ -26,7 +34,7 @@ const userSchema = new mongoose.Schema({
     },
     
 
-    rollNumber: { type: String, unique: true, sparse: true },
+    id: { type: String, unique: true, sparse: true },
     
     role: {
         type: String,

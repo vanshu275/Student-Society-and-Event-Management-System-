@@ -1,9 +1,12 @@
 import background from "../assets/background.mp4";
 import { Link } from "react-router-dom";
+import Starting from "../components/StartingEffect";
 
 const Home = () => {
   return (
     <div className="relative h-screen w-full overflow-hidden">
+      <Starting />
+
       {/* Background */}
       <video
         autoPlay

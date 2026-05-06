@@ -19,14 +19,6 @@ app.use('/api/auth', authRoutes);
 app.use('/api/events', eventRoutes);
 app.use('/api/societies', societyRoutes);
 
-// 3. Health Check Route
-app.get("/", (req, res) => {
-    res.status(200).json({
-        success: true,
-        message: "GBPUAT Event Portal API is Live!",
-        timestamp: new Date().toISOString()
-    });
-});
 
 // 4. Global Error Handler (Ek extra layer security ke liye)
 app.use((err, req, res, next) => {
