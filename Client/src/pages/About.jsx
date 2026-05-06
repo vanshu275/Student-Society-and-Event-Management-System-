@@ -1,7 +1,7 @@
 
 const About = () => {
   return (
-    <div>
+   <div className="bg-black h-screen w-screen">
       
     </div>
   )
