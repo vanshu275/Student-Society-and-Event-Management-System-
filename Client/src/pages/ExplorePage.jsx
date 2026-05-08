@@ -13,7 +13,8 @@ gsap.registerPlugin(ScrollTrigger);
 const ExplorePage = () => {
   const container = useRef(null);
 
- useGSAP(
+
+useGSAP(
   () => {
     // HERO ENTRY
     const tl = gsap.timeline();
@@ -29,7 +30,6 @@ const ExplorePage = () => {
         {
           y: 120,
           opacity: 0,
-          skewY: 19,
           duration: 1.2,
           ease: "expo.out",
         },
@@ -123,7 +123,9 @@ const ExplorePage = () => {
     dependencies: [],
     revertOnUpdate: true,
   },
-);
+);                                 
+
+
 
   return (
     <div ref={container} className="bg-[#0a0a0a] text-white overflow-x-hidden">

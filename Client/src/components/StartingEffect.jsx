@@ -14,13 +14,13 @@ const Starting = () => {
     tl.from(container.current.children, {
       opacity: 0,
       y: 50, 
-      stagger: 0.9,
+      stagger: 0.7,
       ease: "power3.out",
     })
     
     .to(container.current, {
       y: "-100vh",
-      duration: 1.2,
+      duration: .8,
       ease: "power4.inOut",
       delay: 0.5,
     });
