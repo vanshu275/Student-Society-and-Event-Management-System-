@@ -71,7 +71,7 @@ const Register = () => {
         <input
           name="email"
           type="email"
-          placeholder="College Email"
+          placeholder="Email"
           onChange={handleChange}
           required
           className="input"
@@ -108,14 +108,6 @@ const Register = () => {
         <input
           name="branch"
           placeholder="Branch (e.g. CSE)"
-          onChange={handleChange}
-          className="input"
-        />
-
-        {/* Roll No */}
-        <input
-          name="ID"
-          placeholder="Enter your ID"
           onChange={handleChange}
           className="input"
         />

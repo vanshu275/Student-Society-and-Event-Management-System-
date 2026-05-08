@@ -7,7 +7,7 @@ const router = express.Router()
 router.get('/', getAllSocieties);
 
 // Nayi society banane ke liye (Sirf Super Admin ke liye)
-router.post('/create', protect, authorize('admin'), createSociety);
+router.post('/create', protect, authorize('admin' , 'society_head'), createSociety);
 
 // Follow/Unfollow toggle
 router.patch('/follow/:societyId', protect, followSociety);

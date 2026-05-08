@@ -33,36 +33,52 @@ export const followSociety = async (req, res) => {
 // CREATE SOCIETY (Only for Admin - University Level)
 export const createSociety = async (req, res) => {
     try {
-        const { name, description, level, societyHeadEmail } = req.body; // Isme email add karo
+        const { name, description, level, societyHeadEmail } = req.body;
 
-        // 1. Check karo ki society pehle se toh nahi hai
         const existingSociety = await Society.findOne({ name });
-        if (existingSociety) return res.status(400).json({ message: "Society already exists" });
 
-        // 2. Society Head ko dhundo (Uska registered hona zaroori hai)
-        const headUser = await User.findOne({ email: societyHeadEmail });
-        if (!headUser) return res.status(404).json({ message: "User not found to be assigned as Head" });
+        if (existingSociety) {
+            return res.status(400).json({
+                message: "Society already exists"
+            });
+        }
 
-        // 3. Nayi Society banao
+        // Find user
+        const headUser = await User.findOne({
+            email: societyHeadEmail
+        });
+
+        if (!headUser) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+
+        // Make society
         const newSociety = new Society({
             name,
             description,
             level,
-            admin: req.user.id, // Kis admin ne banayi
+            admin: headUser._id,
         });
 
         await newSociety.save();
 
-        // 4. Us user ka role update karke 'society_head' kar do
-        headUser.role = 'society_head';
+        // Update role
+        headUser.role = "society_head";
         await headUser.save();
 
-        res.status(201).json({ message: "Society created successfully!", society: newSociety });
+        res.status(201).json({
+            message: "Society created successfully",
+            society: newSociety
+        });
+
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({
+            message: error.message
+        });
     }
 };
-
 
 
 // GET ALL SOCIETIES (Taaki student list dekh sake)

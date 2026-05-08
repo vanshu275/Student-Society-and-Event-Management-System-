@@ -7,13 +7,13 @@ import About from "../pages/About";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Profile from "../pages/Profile";
-// import Home from "../pages/Home";
+import Home from "../pages/Home";
 
 const router = createBrowserRouter([
-  // {
-  //   path: "/",
-  //   element: <Home />,
-  // },
+  {
+    path: "/",
+    element: <Home />,
+  },
   {
     path: "/profile",
     element: <Profile />,

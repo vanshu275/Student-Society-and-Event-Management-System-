@@ -1,5 +1,6 @@
 import { Event } from '../models/Event.model.js';
 import { User } from '../models/User.model.js';
+import { Society } from '../models/Society.model.js';
 
 // 1. CREATE EVENT (Only for Society Heads/Admins)
 export const createEvent = async (req, res) => {
@@ -9,7 +10,7 @@ export const createEvent = async (req, res) => {
         const society = await Society.findById(societyId);
         if (!society) return res.status(404).json({ message: "Society not found" });
 
-        if (society.admin.toString() !== req.user.id && req.user.role !== 'admin') {
+        if (society.admin.toString() !== req.user.id && req.user.role !== 'society_head') {
             return res.status(403).json({ 
                 message: "Aap is society ke liye event nahi bana sakte, aap owner nahi ho!" 
             });

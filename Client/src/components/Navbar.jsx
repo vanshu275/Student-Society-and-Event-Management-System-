@@ -18,7 +18,7 @@ export const Navbar = () => {
   const avatar =
     user?.gender === "Female"
       ? "https://api.dicebear.com/7.x/avataaars/svg?seed=Jane"
-      : "https://api.dicebear.com/7.x/avataaars/svg?seed=John";
+      : "https://api.dicebear.com/9.x/adventurer/svg?seed=Aneka";
 
   const navLinks = [
     { name: "Home", path: "/explore" },
